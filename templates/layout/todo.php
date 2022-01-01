@@ -23,31 +23,6 @@
     <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js'); ?>
 
 
-    <script type="text/javascript">
-        // Ajax csrf token setup
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': csrfToken // this is defined in app.php as a js variable
-        }
-    });
-
-    // ajax request to save student
-    $("#frm-add-event").on("submit", function(){
-
-        var postdata = $("#frm-add-event").serialize();
-        $.ajax({
-            url: "/ajax-add-event",
-            data: postdata,
-            type: "JSON",
-            method: "post",
-            success:function(response){
-                
-                window.location.href = '/list-students'
-            }
-        });
-    });
-
-    </script>
     <!--Full calendar widget script-->
         <script type="text/javascript">
              $(document).ready(function() {
@@ -157,10 +132,7 @@
     </div>
     <!--/ menu  -->
 
-    <?=
-    $this->Flash->render(); 
-    $this->fetch('content');
-     ?>
+    <?= $this->fetch('content'); ?>
 
 
     <!-- footer part -->

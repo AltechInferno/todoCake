@@ -13,12 +13,6 @@ class TodoController extends AppController
 
     // }
 
-    public function initialize(): void
-    {
-        parent::initialize();
-        $this->loadComponent('RequestHandler');
-    }
-
     
 
     public function home(){
@@ -56,7 +50,33 @@ class TodoController extends AppController
     }
 
     public function insert(){
-       $this->set("title", "Add Event"); 
+
+        if ($this->request->is('ajax')) {
+            
+            $eventsDt = $this->Event->newEmptyEntity();
+
+            $eventsDt = $this->Event->patchEntity($eventsDt, $this->request->getData());
+            if ($this->Event->save($eventsDt)) {
+
+                $this->Flash->success(__('Event has been created'));
+
+                echo json_encode(array(
+                    "status" => 1,
+                    "message" => "Event has been created"
+                )); 
+
+                exit;
+            }
+
+            $this->Flash->error(__('Failed to save event data'));
+
+            echo json_encode(array(
+                "status" => 0,
+                "message" => "Failed to create"
+            )); 
+
+            exit;
+        }
       
     }
     

@@ -51,10 +51,7 @@ return static function (RouteBuilder $routes) {
          * to use (in this case, templates/Pages/home.php)...
          */
         $builder->connect('/', ['controller' => 'Todo', 'action' => 'home']);
-        $builder->connect('/add-event', ['controller' => 'Todo', 'action' => 'insert']);
-
-        // Ajax Routes
-    $builder->connect('/ajax-add-event', ['controller' => 'Ajax', 'action' => 'ajaxAddEvent']);
+       
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
          */
